@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Profile - HealthPlus HMS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #f3f4f6;
+        }
+        .sidebar {
+            background: linear-gradient(180deg, #1e3a8a, #3b82f6);
+        }
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        .dashboard-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        .input-field {
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .input-field:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .btn-primary {
+            background: #3b82f6;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .btn-primary:hover {
+            background: #1e3a8a;
+            transform: scale(1.05);
+        }
+        .btn-secondary {
+            background: #6b7280;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .btn-secondary:hover {
+            background: #4b5563;
+            transform: scale(1.05);
+        }
+        .profile-picture {
+            transition: opacity 0.3s;
+        }
+        .profile-picture:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="sidebar w-64 text-white flex flex-col">
+            <div class="p-4 flex items-center">
+                <img class="h-10 w-10 mr-2" src="https://media.istockphoto.com/id/1624291952/vector/medical-health-logo-design-illustration.jpg?s=612x612&w=0&k=20&c=RdOq1SRcWwS_12_c5Zg2_QOUz1GD-YwGvfRodtOPN5w=" alt="HealthPlus Logo">
+                <h1 class="text-xl font-bold">HealthPlus HMS</h1>
+            </div>
+            <nav class="flex-1 p-4">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="/hospital/" class="flex items-center p-2 text-white bg-blue-700 rounded-md">
+                            <svg class="h-6 w-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                            </svg>
+                            Overview
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/view_department/" class="flex items-center p-2 text-white hover:bg-blue-700 rounded-md">
+                            <svg class="h-6 w-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                            Manage Department
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/manage_doctor/" class="flex items-center p-2 text-white hover:bg-blue-700 rounded-md">
+                            <svg class="h-6 w-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                            </svg>
+                            Manage Doctors
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="/appointments/" class="flex items-center p-2 text-white hover:bg-blue-700 rounded-md">
+                            <svg class="h-6 w-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                            View Appointments
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/patients/" class="flex items-center p-2 text-white hover:bg-blue-700 rounded-md">
+                            <svg class="h-6 w-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 7l6-3V9l-6 3v9z"></path>
+                            </svg>
+                            View Patients
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/hospital_profile/" class="flex items-center p-2 text-white hover:bg-blue-700 rounded-md">
+                            <svg class="h-6 w-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                            Manage Profile
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="p-4">
+                <a href="/" class="flex items-center p-2 text-white hover:bg-blue-700 rounded-md">
+                    <svg class="h-6 w-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7"></path>
+                    </svg>
+                    Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Header -->
+            <header class="bg-white shadow-md p-4 flex justify-between items-center">
+                <h2 class="text-2xl font-bold text-blue-800">Manage Profile</h2>
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-600">Welcome</span>
+                    <img class="h-10 w-10 rounded-full" src="https://thumbs.dreamstime.com/b/doctor-medical-icon-cdr-187019229.jpg" alt="Staff Profile">
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <main class="p-6 flex-1 overflow-y-auto">
+                {% if messages %}
+                <div class="mb-6">
+                    {% for message in messages %}
+                    <div class="p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 text-green-800{% else %}bg-red-100 text-red-800{% endif %}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <!-- Profile Section -->
+                <section id="manage-profile" class="dashboard-container p-6">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-4">Your Profile</h3>
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <!-- Profile Picture -->
+                        <div class="flex-shrink-0">
+                            <img id="profilePicture" class="h-32 w-32 rounded-full object-cover profile-picture" src="https://t4.ftcdn.net/jpg/04/83/90/95/360_F_483909569_OI4LKNeFgHwvvVju60fejLd9gj43dIcd.jpg" alt="Profile Picture">
+                        </div>
+                        <!-- Profile Details / Form -->
+                        <div class="flex-1">
+                            {% if edit_mode %}
+                            <form id="profileForm" method="POST" enctype="multipart/form-data" class="space-y-4">
+                                {% csrf_token %}
+                                <div>
+                                    <label for="full_name" class="block text-blue-800 text-sm font-semibold mb-2">Hospital Name</label>
+                                    <input type="text" id="full_name" name="hname" value="{{ hospital.hname }}" required class="input-field w-full p-3 border rounded-lg bg-white text-gray-700" placeholder="Enter Hospital Name">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-blue-800 text-sm font-semibold mb-2">Hospital Id</label>
+                                    <input type="text" id="email" name="hid" value="{{ hospital.hid }}" required class="input-field w-full p-3 border rounded-lg bg-white text-gray-700" placeholder="Enter Hospital Id">
+                                </div>
+                                <div>
+                                    <label for="address" class="block text-blue-800 text-sm font-semibold mb-2">Address</label>
+                                    <textarea id="address" name="address" class="input-field w-full p-3 border rounded-lg bg-white text-gray-700" placeholder="Enter address">{{ hospital.address }}</textarea>
+                                </div>
+                                <div>
+                                    <label for="full_name" class="block text-blue-800 text-sm font-semibold mb-2">City</label>
+                                    <input type="text" id="full_name" name="city" value="{{ hospital.city }}" required class="input-field w-full p-3 border rounded-lg bg-white text-gray-700" placeholder="Enter City">
+                                </div>
+                                <div>
+                                    <label for="full_name" class="block text-blue-800 text-sm font-semibold mb-2">State</label>
+                                    <input type="text" id="full_name" name="state" value="{{ hospital.state }}" required class="input-field w-full p-3 border rounded-lg bg-white text-gray-700" placeholder="Enter State">
+                                </div>
+                                <div>
+                                    <label for="full_name" class="block text-blue-800 text-sm font-semibold mb-2">Zip</label>
+                                    <input type="text" id="full_name" name="zip" value="{{ hospital.zip }}" required class="input-field w-full p-3 border rounded-lg bg-white text-gray-700" placeholder="Enter Zip Code">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-blue-800 text-sm font-semibold mb-2">Email</label>
+                                    <input type="email" id="email" name="email" value="{{ hospital.email }}" required class="input-field w-full p-3 border rounded-lg bg-white text-gray-700" placeholder="Enter email">
+                                </div>
+                                <div>
+                                    <label for="phone" class="block text-blue-800 text-sm font-semibold mb-2">Phone</label>
+                                    <input type="tel" id="phone" name="phone" value="{{ hospital.phone }}" pattern="[0-9]{10}" class="input-field w-full p-3 border rounded-lg bg-white text-gray-700" placeholder="Enter 10-digit phone number">
+                                </div>
+                                <div>
+                                    <label for="full_name" class="block text-blue-800 text-sm font-semibold mb-2">Password</label>
+                                    <input type="password" id="full_name" name="password" class="input-field w-full p-3 border rounded-lg bg-white text-gray-700" placeholder="***********">
+                                </div>
+                               
+                                <div class="flex space-x-4">
+                                    <button type="submit" class="btn-primary text-white px-6 py-3 rounded-lg font-semibold">Save Changes</button>
+                                    <a href="{% url 'user_profile' %}" class="btn-secondary text-white px-6 py-3 rounded-lg font-semibold">Cancel</a>
+                                </div>
+                            </form>
+                            {% else %}
+                            <div class="space-y-4">
+                                <p><strong class="text-blue-800">Hospital Name:</strong> {{ hospital.hname }}</p>
+                                <p><strong class="text-blue-800">Hospital Id:</strong> {{ hospital.id }}</p>
+                                <p><strong class="text-blue-800">Address:</strong> {{ hospital.address|default:'N/A' }}</p>
+                                <p><strong class="text-blue-800">City:</strong> {{ hospital.city|default:'N/A' }}</p>
+                                <p><strong class="text-blue-800">State:</strong> {{ hospital.state|default:'N/A' }}</p>
+                                <p><strong class="text-blue-800">Zip:</strong> {{ hospital.zip|default:'N/A' }}</p>
+                                <p><strong class="text-blue-800">Email:</strong> {{ hospital.email|default:'N/A' }}</p>
+                                <p><strong class="text-blue-800">Phone:</strong> {{ hospital.phone|default:'N/A' }}</p>
+                                <p><strong class="text-blue-800">Password:</strong> {{ hospital.password|default:'N/A' }}</p>
+                                <a href="{% url 'hospital_profile' %}?edit=true" class="btn-primary text-white px-6 py-3 rounded-lg font-semibold inline-block">Edit Profile</a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Profile picture preview
+        document.getElementById('profilePictureInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profilePicture').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Form validation
+        document.getElementById('profileForm')?.addEventListener('submit', function(event) {
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const fullName = document.getElementById('full_name').value;
+
+            if (!fullName.trim()) {
+                event.preventDefault();
+                alert('Full name is required.');
+                return;
+            }
+
+            if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                event.preventDefault();
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            if (phone && !phone.match(/^[0-9]{10}$/)) {
+                event.preventDefault();
+                alert('Phone number must be 10 digits.');
+                return;
+            }
+        });
+    </script>
+</body>
+</html>

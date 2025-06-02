@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Login - HealthPlus HMS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .login-bg {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            background-size: cover;
+            background-position: center;
+        }
+        .animate-pulse-slow {
+            animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-md bg-white rounded-lg shadow-xl p-8 login-bg">
+        <div class="text-center mb-8">
+            <img class="h-12 w-12 mx-auto mb-4" src="https://media.istockphoto.com/id/1624291952/vector/medical-health-logo-design-illustration.jpg?s=612x612&w=0&k=20&c=RdOq1SRcWwS_12_c5Zg2_QOUz1GD-YwGvfRodtOPN5w=" alt="HealthPlus Logo">
+            <h1 class="text-3xl font-bold text-white animate-pulse-slow">HealthPlus HMS</h1>
+            <h2 class="text-xl font-semibold text-white mt-2">Hospital Login</h2>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <form method="POST">
+                {% csrf_token %}
+            <div class="mb-6">
+                <label class="block text-blue-800 text-sm font-bold mb-2" for="staff-id">Hospital ID</label>
+                <input class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-600" id="staff-id" type="text" name="hid" placeholder="Enter Hospital ID" required>
+            </div>
+            <div class="mb-6">
+                <label class="block text-blue-800 text-sm font-bold mb-2" for="password">Password</label>
+                <input class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-600" id="password" type="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <div class="flex items-center justify-between mb-6">
+                <label class="flex items-center text-gray-600">
+                    <input type="checkbox" class="mr-2">
+                    <span class="text-sm">Remember me</span>
+                </label>
+                <a href="#" class="text-sm text-blue-600 hover:underline">Forgot Password?</a>
+            </div>
+            <div class="text-center">
+                <button class="bg-blue-600 text-white px-6 py-3 rounded-md font-medium hover:bg-blue-700 transition duration-300 w-full hover-scale">Sign In</button>
+            </div>
+            </form>
+        </div>
+        <div class="text-center mt-6">
+            <a href="/" class="text-white text-sm hover:underline">Back to Home</a>
+        </div>
+    </div>
+    {% if msg == 'Invalid' %}
+    <script>
+        alert("Invalid credentials. Please try again.");
+    </script>
+    {% elif msg == 'Success' %}
+    <script>
+        window.location.href = "/hospital/";
+    </script>
+    {% elif msg == 'New Hospital' %}
+    <script>
+        alert("Kindly wait for admin approval. You will be notified via email once approved.");
+    </script>
+    {% endif %}
+</body>
+</html>
